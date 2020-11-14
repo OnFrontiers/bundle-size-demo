@@ -16,4 +16,15 @@ module.exports = {
   },
 
   plugins: [new BundleAnalyzerPlugin({ openAnalyzer: false })],
+
+  optimization: {
+    splitChunks: {
+      chunks: 'all',
+      cacheGroups: {
+        defaultVendors: {
+          name: 'vendors',
+        },
+      },
+    },
+  },
 };
