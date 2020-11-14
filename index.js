@@ -1,6 +1,11 @@
+import _ from 'lodash';
+
 function HelloComponent() {
   const element = document.createElement('div');
-  element.innerText = 'Hello from bundle size demo';
+  element.innerText = _.join(
+    ['Hello from bundle size demo', 'with lodash'],
+    ' '
+  );
   return element;
 }
 
