@@ -1,36 +1,19 @@
 const path = require('path');
-
-const isDebug = !process.argv.includes('--release');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 module.exports = {
-    mode: isDebug ? 'development' : 'production',
-    entry: './src/index.js',
-    output: {
-        filename: 'main.js',
-        path: path.resolve(__dirname, 'dist'),
-    },
-    devtool: isDebug ? 'cheap-module-inline-source-map' : 'source-map',
-    devServer: {
-        open: true,
-        contentBase: './dist',
-    },
-    module: {
-        rules: [
-            {
-                test: /\.m?js$/,
-                exclude: /node_modules/,
-                use: {
-                    loader: "babel-loader",
-                    options: {
-                        babelrc: false,
-                        configFile: false,
-                        presets: [
-                            '@babel/preset-env',
-                            '@babel/preset-react',
-                        ]
-                    }
-                }
-            }
-        ]
-    }
+  mode: 'production',
+
+  devtool: 'source-map',
+
+  entry: {
+    index: './index.js',
+  },
+
+  output: {
+    filename: '[name].js',
+    path: path.resolve(__dirname, 'dist'),
+  },
+
+  plugins: [new BundleAnalyzerPlugin({ openAnalyzer: false })],
 };
