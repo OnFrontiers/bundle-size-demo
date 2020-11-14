@@ -1,3 +1,4 @@
+const webpack = require('webpack');
 const path = require('path');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
@@ -15,7 +16,13 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
   },
 
-  plugins: [new BundleAnalyzerPlugin({ openAnalyzer: false })],
+  plugins: [
+    new webpack.IgnorePlugin({
+      resourceRegExp: /^\.\/locale$/,
+      contextRegExp: /moment$/,
+    }),
+    new BundleAnalyzerPlugin({ openAnalyzer: false }),
+  ],
 
   optimization: {
     splitChunks: {
