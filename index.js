@@ -1,9 +1,9 @@
-import _ from 'lodash';
+import join from 'lodash/join';
 
 function HelloComponent() {
   const element = document.createElement('div');
-  element.innerText = _.join(
-    ['Hello from bundle size demo', 'with lodash'],
+  element.innerText = join(
+    ['Hello from bundle size demo', 'with lodash join'],
     ' '
   );
   return element;
